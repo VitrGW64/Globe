@@ -3,7 +3,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 export function createSun(scene, directionalLight) {
   const sunDistance = 25;
-  let sunAngle = -Math.PI / 3; 
+  let sunAngle = 0;
 
   const sunGroup = new THREE.Group();
   scene.add(sunGroup);
