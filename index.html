@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Globe: Light Simulator</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <style>
+    body { margin: 0; overflow: hidden; background: #000; }
+
+    #intro {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+    #intro video { width: 100%; height: 100%; object-fit: cover; }
+    #intro.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    #timeControl {
+      animation: fadeIn 1.5s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="intro">
+    <video autoplay muted playsinline>
+      <source src="./intro.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div id="timeControl" class="absolute top-[70vh] inset-x-0 flex justify-center z-50">
+    <div class="bg-black/60 border border-white/10 rounded-lg 
+                px-4 py-2 text-center text-white font-sans shadow-sm text-sm">
+
+      <div class="text-base font-semibold tracking-wide mb-1">
+        Set Time
+      </div>
+
+      <input 
+        type="text"
+        id="timeInput"
+        placeholder="e.g. 07:30 or 19"
+        class="bg-white/20 text-white placeholder-white/70 text-center rounded-md 
+              px-2 py-1 text-base outline-none focus:ring-2 focus:ring-blue-400 
+              transition-all duration-200 w-32 sm:w-36 md:w-40 mt-2"
+      />
+
+      <div id="currentTime" class="mt-2 text-xs text-white/70 italic">
+        Current time: 12:00
+      </div>
+    </div>
+  </div>
+
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
