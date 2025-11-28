@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 export function createSun(scene, directionalLight) {
+  let sun = null;
+
   const sunDistance = 25;
   let sunAngle = 0;
 
@@ -19,7 +21,7 @@ export function createSun(scene, directionalLight) {
 
   const loader = new GLTFLoader();
   loader.load('./models/sun.glb', (gltf) => {
-    const sun = gltf.scene;
+    sun = gltf.scene;
   
     const box = new THREE.Box3().setFromObject(sun);
     const center = box.getCenter(new THREE.Vector3());
@@ -63,6 +65,7 @@ export function createSun(scene, directionalLight) {
       
     let sunRotation = 0;
     sunGroup.rotateSun = (delta) => {
+      if (!sun) return; 
       if (!sun.children.length) return; 
       sun.rotation.y = sunRotation;
       sunRotation += delta * 0.05; 
