@@ -41,7 +41,7 @@ export function initTimeController(scene, camera, renderer, controls, sunGroup) 
 
   function updateDisplay(h, m) {
     currentTimeDisplay.textContent = 
-      `Current time: ${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+      `Current time: ${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')} WIB (UTC+7)`;
 
     const localMinutesTotal = h * 60 + m;
     let utcMinutesTotal = localMinutesTotal - (WIB_OFFSET * 60);
